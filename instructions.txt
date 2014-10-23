@@ -1,0 +1,53 @@
+Registers:
+IP		Instruction Pointer, points to current instructions memory address
+REM		Remainder Register, holds the remainder after a division operation
+SP		Stack Pointer
+BP		Base Pointer
+SI		Source Index
+DI		Destination Index
+CS		Code Segment Register
+DS		Data Segment Register
+SS		Stack Segment Register
+REG1-32	General Purpose Registers
+Flags	Flags Register
+
+Flags:
+CF		Carry Flag
+ZF		Zero Flag
+SF		Sign Flag
+DF		Direction Flag
+OF		Overflow Flag
+
+Instruction List:
+HLT		Halts the cpu
+NOP		Does no operation for a fetch-decode-execute cycle
+AND		arg1 &= arg2 - Logical ands a value stored in a register(r) or(/) memory(m) with a register(r) or immediate value(imm)
+OR		arg1 |= arg2
+XOR		arg1 ^= arg2
+NOT		arg1 ^= -1
+XCHG	arg1 :=:(swap) arg2
+SHL		arg1 <<= arg2 shift		(MSB Ignored)
+SHR		arg1 >>= arg2 shift		(LSB Ignored)
+ROL		arg1 <<= arg2 rotation	(MSB moved to LSB)
+ROR		arg1 >>= arg2 rotation	(LSB moved to MSB)
+NEG		arg1 *= -1	(2's complement)
+ADD		arg1 += arg2
+SUB		arg1 += arg2
+MUL		arg1 *= arg2
+DIV		arg1 /= arg2	REM = arg1 % arg2
+TEST	arg1, arg2	(Sets SF to MSB of the result) (Sets ZF to 1 if both operands are 0, otherwise 0)
+CMP		arg1, arg2	Subtracts(signed) operand2 from operand1 and Sets SF to MSB of the result, ZF to 1 if result is 0, otherwise 0
+JMP		IP += arg1
+JMPL	IP = arg1
+JE		IP = arg1 iff ZF==1
+JNE		IP = arg1 iff ZF==0
+JL		IP = arg1 iff SF==1
+JLE		IP = arg1 iff (SF==1 | ZF==0)
+JG		IP = arg1 iff SF==0
+JGE		IP = arg1 iff (SF==0 | ZF==0)
+JZ		IP = arg1 iff ZF==1
+JNZ		IP = arg1 iff ZF==0
+JS		IP = arg1 iff SF==1
+JNS		IP = arg1 iff SF==0
+MOV		arg1, arg2	(MOV SRC, DEST)
+
