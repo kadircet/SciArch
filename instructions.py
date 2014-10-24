@@ -16,7 +16,7 @@ DI		Destination Index
 CS		Code Segment Register
 DS		Data Segment Register
 SS		Stack Segment Register
-REG1-32	General Purpose Registers
+REG1-24	General Purpose Registers
 Flags	Flags Register
 """
 
@@ -62,5 +62,36 @@ JNZ		IP = r/m/imm iff ZF==0
 JS		IP = r/m/imm iff SF==1
 JNS		IP = r/m/imm iff SF==0
 MOV		r/imm, m	r/imm/m, r	(MOV SRC, DEST)
+"""
+
+"""
+Each opcode is 6bits
+0x0000	HLT
+0x0001	NOP
+0x0002	AND	(r1(5bits) | r2(5bits))
+0x0002	AND (r1(5bits) | 11110(5bits) | immediate value (ARCHBITS bits))
+0x0002	AND	(r1(5bits) | 11111(5bits) | memory address (ARCHBITS bits))
+0x0002	AND (11111(5bits) | 11111(5bits) | memory address (ARCHBITS bits) | immediate value (ARCHBITS bits))
+0x0003	OR	(r1(5bits) | r2(5bits))
+0x0003	OR	(r1(5bits) | 11110(5bits) | immediate value (ARCHBITS bits))
+0x0003	OR	(r1(5bits) | 11111(5bits) | memory address (ARCHBITS bits))
+0x0003	OR	(11111(5bits) | 11111(5bits) | memory address (ARCHBITS bits) | immediate value (ARCHBITS bits))
+0x0004	XOR	(r1(5bits) | r2(5bits))
+0x0004	XOR	(r1(5bits) | 11110(5bits) | immediate value (ARCHBITS bits))
+0x0004	XOR	(r1(5bits) | 11111(5bits) | memory address (ARCHBITS bits))
+0x0004	XOR	(11111(5bits) | 11111(5bits) | memory address (ARCHBITS bits) | immediate value (ARCHBITS bits))
+0x0005	NOT	(r1(5bits))
+0x0006	XCHG(r1(5bits) | r2(5bits))
+0x0006	XCHG(r1(5bits) | 11111(5bits) | memory address (ARCHBITS bits))
+0x0007	SHL	(r1(5bits) | r2(5bits))
+0x0007	SHL	(r1(5bits) | 11110(5bits) | immediate value(ARCHBITS bits))
+0x0008	SHR	(r1(5bits) | r2(5bits))
+0x0008	SHR	(r1(5bits) | 11110(5bits) | immediate value(ARCHBITS bits))
+0x0009	ROL	(r1(5bits) | r2(5bits))
+0x0009	ROL	(r1(5bits) | 11110(5bits) | immediate value(ARCHBITS bits))
+0x000A	ROR	(r1(5bits) | r2(5bits))
+0x000A	ROR	(r1(5bits) | 11110(5bits) | immediate value(ARCHBITS bits))
+0x000B	NEG	(r1(5bits))
+0x000B	NEG (11111(5bits) | memory address (ARCHBITS bits))
 """
 
